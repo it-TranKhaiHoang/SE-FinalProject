@@ -22,5 +22,10 @@ namespace SE_FinalProject.Forms
             loginForm loginForm = new loginForm();
             loginForm.ShowDialog();
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
