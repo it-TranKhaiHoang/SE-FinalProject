@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
 using System.Data.SqlClient;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace SE_FinalProject
 {
@@ -16,17 +17,25 @@ namespace SE_FinalProject
     {
         private void login()
         {
+            
             SqlConnection conn = new SqlConnection(Program.connectionString);
             conn.Open();
-            String sSQL = "SELECT username, password FROM Users WHERE " +
+            String sSQL = "SELECT username, password, fullname FROM Accountant WHERE " +
             "username='" + tbUsername.Text + "' and password='" +
             tbPassword.Text + "'";
             SqlCommand cmd = new SqlCommand(sSQL, conn);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             da.Fill(dt);
+            SqlDataReader dataReader = cmd.ExecuteReader();
             if (dt.Rows.Count > 0)
             {
+                
+                while (dataReader.Read())
+                {
+                    Program.username = dataReader.GetString(2);
+                }
+                
                 this.Close();
             }
             else
