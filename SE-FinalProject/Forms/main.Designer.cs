@@ -43,7 +43,6 @@
             this.fluentDesignFormControl1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl();
             this.skinBarSubItem1 = new DevExpress.XtraBars.SkinBarSubItem();
             this.fluentFormDefaultManager1 = new DevExpress.XtraBars.FluentDesignSystem.FluentFormDefaultManager(this.components);
-            this.ac_ListDeliveryNote = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fluentDesignFormControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fluentFormDefaultManager1)).BeginInit();
@@ -53,7 +52,7 @@
             // 
             this.mainContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainContainer.Location = new System.Drawing.Point(173, 31);
-            this.mainContainer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.mainContainer.Margin = new System.Windows.Forms.Padding(2);
             this.mainContainer.Name = "mainContainer";
             this.mainContainer.Size = new System.Drawing.Size(819, 511);
             this.mainContainer.TabIndex = 0;
@@ -69,7 +68,7 @@
             this.ac_Logout,
             this.accordionControlSeparator2});
             this.accordionControl1.Location = new System.Drawing.Point(0, 31);
-            this.accordionControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.accordionControl1.Margin = new System.Windows.Forms.Padding(2);
             this.accordionControl1.Name = "accordionControl1";
             this.accordionControl1.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Touch;
             this.accordionControl1.Size = new System.Drawing.Size(173, 511);
@@ -104,8 +103,7 @@
             // ac_Delivery
             // 
             this.ac_Delivery.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
-            this.ac_CreateDeliveryNote,
-            this.ac_ListDeliveryNote});
+            this.ac_CreateDeliveryNote});
             this.ac_Delivery.Expanded = true;
             this.ac_Delivery.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ac_Delivery.ImageOptions.Image")));
             this.ac_Delivery.Name = "ac_Delivery";
@@ -142,7 +140,7 @@
             this.skinBarSubItem1});
             this.fluentDesignFormControl1.Location = new System.Drawing.Point(0, 0);
             this.fluentDesignFormControl1.Manager = this.fluentFormDefaultManager1;
-            this.fluentDesignFormControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.fluentDesignFormControl1.Margin = new System.Windows.Forms.Padding(2);
             this.fluentDesignFormControl1.Name = "fluentDesignFormControl1";
             this.fluentDesignFormControl1.Size = new System.Drawing.Size(992, 31);
             this.fluentDesignFormControl1.TabIndex = 2;
@@ -162,14 +160,6 @@
             this.skinBarSubItem1});
             this.fluentFormDefaultManager1.MaxItemId = 1;
             // 
-            // ac_ListDeliveryNote
-            // 
-            this.ac_ListDeliveryNote.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ac_ListDeliveryNote.ImageOptions.Image")));
-            this.ac_ListDeliveryNote.Name = "ac_ListDeliveryNote";
-            this.ac_ListDeliveryNote.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.ac_ListDeliveryNote.Text = "List Delivery Note";
-            this.ac_ListDeliveryNote.Click += new System.EventHandler(this.ac_ListDeliveryNote_Click);
-            // 
             // main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -181,7 +171,7 @@
             this.Controls.Add(this.fluentDesignFormControl1);
             this.FluentDesignFormControl = this.fluentDesignFormControl1;
             this.IconOptions.Image = global::SE_FinalProject.Properties.Resources.logoHoangThong_removebg_preview;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "main";
             this.NavigationControl = this.accordionControl1;
             this.Text = "HOANG THONG";
@@ -207,6 +197,5 @@
         private DevExpress.XtraBars.SkinBarSubItem skinBarSubItem1;
         private DevExpress.XtraBars.Navigation.AccordionControlElement ac_GoodsList;
         private DevExpress.XtraBars.Navigation.AccordionControlSeparator accordionControlSeparator2;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement ac_ListDeliveryNote;
     }
 }

@@ -1,10 +1,15 @@
-﻿using DevExpress.XtraEditors;
+﻿using Dapper;
+using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
+using SE_FinalProject.Classes;
+using SE_FinalProject.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -42,7 +47,17 @@ namespace SE_FinalProject.UI
 
         private void GC_ListDeliveryNote_Load(object sender, EventArgs e)
         {
-            GC_ListDeliveryNote.DataSource = Controllers.GetDeliveryNote();
+            //GC_ListDeliveryNote.DataSource = Controllers.GetDeliveryNote();
+            using (IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConn"].ConnectionString))
+            {
+                if (db.State == ConnectionState.Closed)
+                    db.Open();
+                string query = "SELECT d.NoteID, d.AgencyID, d.AccountantID, d.Delivery_Date, d.Total_amount, a.Agency_Name, c.fullname " +
+                "FROM Goods_Delivery_Note d " +
+                "inner join Agency a ON d.AgencyID = a.AgencyID " +
+                "inner join Accountant as c on c.UserID = d.AccountantID ";
+                deliveryNoteBindingSource.DataSource = db.Query<DeliveryNote>(query, commandType: CommandType.Text);
+            }
 
         }
 
@@ -196,14 +211,49 @@ namespace SE_FinalProject.UI
 
         private void btn_DNLoad_Click(object sender, EventArgs e)
         {
-            if (dtFromDate.Text != "" && dtToDate.Text != "") 
-                GC_ListDeliveryNote.DataSource = Controllers.GetDeliveryNoteByDate(dtFromDate.Text,dtToDate.Text);
+            if (dtFromDate.Text != "" && dtToDate.Text != "")
+            {
+                //GC_ListDeliveryNote.DataSource = Controllers.GetDeliveryNoteByDate(dtFromDate.Text,dtToDate.Text);
+                using (IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConn"].ConnectionString))
+                {
+                    if (db.State == ConnectionState.Closed)
+                        db.Open();
+                    string query = "SELECT d.NoteID, d.AgencyID, d.AccountantID, d.Delivery_Date, d.Total_amount, a.Agency_Name as 'Agency_Name', c.fullname as 'fullname'" +
+                    "FROM Goods_Delivery_Note d " +
+                    "inner join Agency a ON d.AgencyID = a.AgencyID " +
+                    "inner join Accountant as c on c.UserID = d.AccountantID " +
+                    $"WHERE d.Delivery_Date between '{dtFromDate.Text}' and '{dtToDate.Text}'";
+                    deliveryNoteBindingSource.DataSource = db.Query<DeliveryNote>(query, commandType: CommandType.Text);
+                }
+            }
+                
         }
 
         private void btn_DNPrint_Click(object sender, EventArgs e)
         {
-            String id = GV_ListDeliveryNote.GetFocusedRowCellValue("NoteID").ToString();
+            DeliveryNote obj = deliveryNoteBindingSource.Current as DeliveryNote;
+            MessageBox.Show(obj.NoteID);
+            if (obj != null)
+            {
+                using (IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConn"].ConnectionString))
+                {
+                    if (db.State == ConnectionState.Closed)
+                        db.Open();
+                    string query = "SELECT d.NoteID, d.GoodsID, d.Unit, d.Price, d.Quantity, d.Into_money, g.Goods_Name " +
+                    "FROM [Goods_Delivery_Detail] d " +
+                    "inner join Goods g ON g.GoodsID = d.GoodsID " +
+                    $"WHERE d.NoteID = '{obj.NoteID}' ";
+                    List<DeliveryDetail> list = db.Query<DeliveryDetail>(query, commandType: CommandType.Text).ToList();
+                    using (frmPrint frm = new frmPrint())
+                    {
+                        frm.printNote(obj, list);
+                        frm.ShowDialog();
+                    }
+                }
+            }
+                
             
+
         }
     }
 }

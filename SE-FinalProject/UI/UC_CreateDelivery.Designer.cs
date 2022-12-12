@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_CreateDelivery));
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -81,12 +82,12 @@
             this.dtToDate = new DevExpress.XtraEditors.DateEdit();
             this.dtFromDate = new DevExpress.XtraEditors.DateEdit();
             this.GC_ListDeliveryNote = new DevExpress.XtraGrid.GridControl();
+            this.deliveryNoteBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.GV_ListDeliveryNote = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.col_DN_btnDelete = new DevExpress.XtraGrid.Columns.GridColumn();
             this.DN_btnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.col_DN_AgencyName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_DN_ID = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.col_DN_Agency = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.col_DN_Accountant = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_DN_DeliveryDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_DN_TotalAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btn_DNPrint = new DevExpress.XtraEditors.SimpleButton();
@@ -138,6 +139,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtFromDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtFromDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GC_ListDeliveryNote)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deliveryNoteBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GV_ListDeliveryNote)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DN_btnDelete)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
@@ -563,6 +565,7 @@
             // 
             // GC_ListDeliveryNote
             // 
+            this.GC_ListDeliveryNote.DataSource = this.deliveryNoteBindingSource;
             this.GC_ListDeliveryNote.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(2);
             this.GC_ListDeliveryNote.Location = new System.Drawing.Point(24, 71);
             this.GC_ListDeliveryNote.MainView = this.GV_ListDeliveryNote;
@@ -576,13 +579,16 @@
             this.GV_ListDeliveryNote});
             this.GC_ListDeliveryNote.Load += new System.EventHandler(this.GC_ListDeliveryNote_Load);
             // 
+            // deliveryNoteBindingSource
+            // 
+            this.deliveryNoteBindingSource.DataSource = typeof(SE_FinalProject.Classes.DeliveryNote);
+            // 
             // GV_ListDeliveryNote
             // 
             this.GV_ListDeliveryNote.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.col_DN_btnDelete,
+            this.col_DN_AgencyName,
             this.col_DN_ID,
-            this.col_DN_Agency,
-            this.col_DN_Accountant,
             this.col_DN_DeliveryDate,
             this.col_DN_TotalAmount});
             this.GV_ListDeliveryNote.DetailHeight = 227;
@@ -597,7 +603,7 @@
             this.col_DN_btnDelete.ColumnEdit = this.DN_btnDelete;
             this.col_DN_btnDelete.Name = "col_DN_btnDelete";
             this.col_DN_btnDelete.Visible = true;
-            this.col_DN_btnDelete.VisibleIndex = 0;
+            this.col_DN_btnDelete.VisibleIndex = 4;
             // 
             // DN_btnDelete
             // 
@@ -609,6 +615,14 @@
             this.DN_btnDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.DN_btnDelete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.DN_btnDelete_ButtonClick);
             // 
+            // col_DN_AgencyName
+            // 
+            this.col_DN_AgencyName.Caption = "Agency Name";
+            this.col_DN_AgencyName.FieldName = "AgencyID";
+            this.col_DN_AgencyName.Name = "col_DN_AgencyName";
+            this.col_DN_AgencyName.Visible = true;
+            this.col_DN_AgencyName.VisibleIndex = 1;
+            // 
             // col_DN_ID
             // 
             this.col_DN_ID.Caption = "Note ID";
@@ -616,25 +630,7 @@
             this.col_DN_ID.Name = "col_DN_ID";
             this.col_DN_ID.OptionsColumn.AllowEdit = false;
             this.col_DN_ID.Visible = true;
-            this.col_DN_ID.VisibleIndex = 1;
-            // 
-            // col_DN_Agency
-            // 
-            this.col_DN_Agency.Caption = "AgencyID";
-            this.col_DN_Agency.FieldName = "Agency_Name";
-            this.col_DN_Agency.Name = "col_DN_Agency";
-            this.col_DN_Agency.OptionsColumn.AllowEdit = false;
-            this.col_DN_Agency.Visible = true;
-            this.col_DN_Agency.VisibleIndex = 2;
-            // 
-            // col_DN_Accountant
-            // 
-            this.col_DN_Accountant.Caption = "Accountant";
-            this.col_DN_Accountant.FieldName = "fullname";
-            this.col_DN_Accountant.Name = "col_DN_Accountant";
-            this.col_DN_Accountant.OptionsColumn.AllowEdit = false;
-            this.col_DN_Accountant.Visible = true;
-            this.col_DN_Accountant.VisibleIndex = 3;
+            this.col_DN_ID.VisibleIndex = 0;
             // 
             // col_DN_DeliveryDate
             // 
@@ -645,7 +641,7 @@
             this.col_DN_DeliveryDate.Name = "col_DN_DeliveryDate";
             this.col_DN_DeliveryDate.OptionsColumn.AllowEdit = false;
             this.col_DN_DeliveryDate.Visible = true;
-            this.col_DN_DeliveryDate.VisibleIndex = 4;
+            this.col_DN_DeliveryDate.VisibleIndex = 2;
             // 
             // col_DN_TotalAmount
             // 
@@ -656,7 +652,7 @@
             this.col_DN_TotalAmount.Name = "col_DN_TotalAmount";
             this.col_DN_TotalAmount.OptionsColumn.AllowEdit = false;
             this.col_DN_TotalAmount.Visible = true;
-            this.col_DN_TotalAmount.VisibleIndex = 5;
+            this.col_DN_TotalAmount.VisibleIndex = 3;
             // 
             // btn_DNPrint
             // 
@@ -844,6 +840,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtFromDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtFromDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GC_ListDeliveryNote)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deliveryNoteBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GV_ListDeliveryNote)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DN_btnDelete)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
@@ -905,8 +902,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit txtQuantity1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraGrid.Columns.GridColumn col_DN_ID;
-        private DevExpress.XtraGrid.Columns.GridColumn col_DN_Agency;
-        private DevExpress.XtraGrid.Columns.GridColumn col_DN_Accountant;
         private DevExpress.XtraGrid.Columns.GridColumn col_DN_DeliveryDate;
         private DevExpress.XtraGrid.Columns.GridColumn col_DN_TotalAmount;
         private DevExpress.XtraGrid.Columns.GridColumn col_DN_btnDelete;
@@ -919,5 +914,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
         private DevExpress.XtraEditors.SimpleButton btn_DNLoad;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
+        private System.Windows.Forms.BindingSource deliveryNoteBindingSource;
+        private DevExpress.XtraGrid.Columns.GridColumn col_DN_AgencyName;
     }
 }

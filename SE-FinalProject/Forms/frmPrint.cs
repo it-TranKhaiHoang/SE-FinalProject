@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.Office.Utils;
+using DevExpress.XtraEditors;
 using SE_FinalProject.Classes;
 using System;
 using System.Collections.Generic;
@@ -19,14 +20,14 @@ namespace SE_FinalProject.Forms
             InitializeComponent();
         }
 
-        public void printNote(DeliveryNote DN)
+        public void printNote(DeliveryNote DN, List<DeliveryDetail> data)
         {
-            Report_DN report = new Report_DN();
+            ReportDN report = new ReportDN();
             foreach (DevExpress.XtraReports.Parameters.Parameter p in report.Parameters)
             {
                 p.Visible = false;
             }
-            report.InitData(DN.AgencyID, DN.NoteID, DN.AccountantID, DN.Delivery_Date);
+            report.InitData(DN.AgencyID, DN.NoteID, DN.AccountantID, DN.Delivery_Date, data);
             documentViewer1.DocumentSource = report;
             report.CreateDocument();
         }

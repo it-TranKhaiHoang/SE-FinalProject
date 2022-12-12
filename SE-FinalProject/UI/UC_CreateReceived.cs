@@ -27,12 +27,8 @@ namespace SE_FinalProject.UI
             load_LKGoods();
         }
 
-        List<Received_Detail> received_Details = new List<Received_Detail>();
         private decimal total_amount = 0;
-        private void addReceivedToClass(String NoteID, String GoodsID, String Unit, decimal Price,int Quantity ,decimal Into_Money)
-        {
-            received_Details.Add(new Received_Detail() {NoteID = NoteID, GoodsID = GoodsID, Unit = Unit, Price = Price, Quantity = Quantity, Into_Money = Into_Money });
-        }
+       
         
         private void load_LKGoods()
         {

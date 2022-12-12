@@ -11,8 +11,6 @@ namespace SE_FinalProject.Classes
     {
         public String NoteID { get; set; }
         public String AgencyID { get; set; }
-        [Display(Name = "Agency Name")]   
-        
         public String AccountantID { get; set; }
         public DateTime Delivery_Date { get; set; }
         public decimal Total_amount { get; set; }
