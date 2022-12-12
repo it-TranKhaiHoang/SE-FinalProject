@@ -12,6 +12,7 @@ namespace SE_FinalProject
     {
         public static string connectionString = "";
         public static string username = "";
+        public static string userID = "";
         /// <summary>
         /// The main entry point for the application.
         /// </summary>

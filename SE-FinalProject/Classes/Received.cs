@@ -12,6 +12,6 @@ namespace SE_FinalProject.Classes
         public String ReceivedReason { get; set; }
         public String AccountantID { get; set; }
         public DateTime ReceivedDate { get; set; }
-        public float TotalAmount { get; set; }
+        public decimal TotalAmount { get; set; }
     }
 }

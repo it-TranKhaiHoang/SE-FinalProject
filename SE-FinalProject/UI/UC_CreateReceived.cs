@@ -39,7 +39,7 @@ namespace SE_FinalProject.UI
             LK_ListGoods.DataSource = Controllers.GetGoodsToReceived();
             LK_ListGoods.DisplayMember = "GoodsID";
             LK_ListGoods.ValueMember = "GoodsID";
-            LK_ListGoods.NullText = @"Chooses goods";
+            LK_ListGoods.NullText = @"Please select an item";
         }
 
 
@@ -56,8 +56,8 @@ namespace SE_FinalProject.UI
 
         private void GC_ReceivedDetail_Load(object sender, EventArgs e)
         {
-         
            GC_ReceivedDetail.DataSource = Controllers.GetReceivedDetail("");
+           //GC_ReceivedDetail.DataSource = Controllers.GetDeliveryDetail("GDN-001");
         }
 
         private void GV_ReceivedNote_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
@@ -107,7 +107,7 @@ namespace SE_FinalProject.UI
         private void btnCreate_CreateReceived_Click(object sender, EventArgs e)
         {
             String NoteID = txtNodeID.Text;
-            String AccountantID = "ACT-001";
+            String AccountantID = Program.userID;
             String Received_Reason = txtReceivedReason.Text;
             decimal Total_amount = total_amount;
             if (txtNodeID.Text == "")
@@ -131,7 +131,6 @@ namespace SE_FinalProject.UI
                     Controllers.CreateReceivedDetail(NoteID, GoodsID, Unit, Price, Quantity, Into_Money);
                 }
 
-                //LCG_ListGoods.Enabled = true;
                 GC_ReceivedNote.DataSource = Controllers.GetReceivedNoteList();
             }
         }

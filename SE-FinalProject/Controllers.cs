@@ -77,7 +77,7 @@ namespace SE_FinalProject
         public static DataTable GetGoodsToDelivery()
         {
             DataTable dt = GetData(
-               "SELECT *"
+               "SELECT GoodsID, Goods_Img,Price as 'numPrice', Goods_Name, Unit, Quantity, FORMAT(Price,'c','vi-VN') AS 'Price'"
                + "FROM Goods WHERE Quantity > 0");
             return dt;
         }
@@ -108,12 +108,25 @@ namespace SE_FinalProject
         }
         public static DataTable GetDeliveryNote()
         {
-            DataTable dt = GetData("SELECT * FROM Goods_Delivery_Note");
+            DataTable dt = GetData("SELECT d.NoteID, d.AgencyID, d.AccountantID, d.Delivery_Date, d.Total_amount, a.Agency_Name, c.fullname " +
+                "FROM Goods_Delivery_Note d " +
+                "inner join Agency a ON d.AgencyID = a.AgencyID " +
+                "inner join Accountant as c on c.UserID = d.AccountantID");
+            return dt;
+        }
+        public static DataTable GetDeliveryNoteByDate(String FromDate, String ToDate)
+        {
+            DataTable dt = GetData("SELECT d.NoteID, d.AgencyID, d.AccountantID, d.Delivery_Date, d.Total_amount, a.Agency_Name, c.fullname " +
+                "FROM Goods_Delivery_Note d " +
+                "inner join Agency a ON d.AgencyID = a.AgencyID " +
+                "inner join Accountant as c on c.UserID = d.AccountantID " +
+                $"WHERE d.Delivery_Date between '{FromDate}' and '{ToDate}'");
             return dt;
         }
         public static DataTable GetDeliveryDetail(String NoteID)
         {
-            DataTable dt = GetData("SELECT * FROM Goods_Delivery_Detail WHERE NoteID = '" +NoteID+"'");
+            String sql = "SELECT * FROM Goods_Delivery_Detail WHERE NoteID = '" + NoteID + "'";
+            DataTable dt = GetData(sql);
             if (dt == null)
                 return null;
             return dt;
@@ -153,6 +166,46 @@ namespace SE_FinalProject
                 {
                     MessageBox.Show("Error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 } 
+            }
+            else
+            {
+                MessageBox.Show("Error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public static void CreateDeliveryNote(String NoteID, String AgencyID, String AccountantID, String Delivery_Date, decimal Total_amount )
+        {
+            int i = AddData("INSERT INTO Goods_Delivery_Note (NoteID,AgencyID, AccountantID,Delivery_Date, Total_amount)" +
+               "VALUES('"+NoteID+"', '"+AgencyID+"', '"+AccountantID+"','"+Delivery_Date+"', "+Total_amount+")");
+            if (i != 0)
+            {
+                MessageBox.Show("Success", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public static void CreateDeliveryDetail(String NoteID, String GoodsID, String Unit, decimal Price, int Quantity, decimal Into_Money) 
+        {
+            int i = AddData("INSERT INTO Goods_Delivery_Detail(NoteID, GoodsID, Unit, Price, Quantity, Into_Money)" +
+                "VALUES('" + NoteID + "', '" + GoodsID + "', '" + Unit + "', " + Price + ", " + Quantity + "," + Into_Money + ")");
+        }
+        public static void DeleteDeliveryNote(String NoteID)
+        {
+            String sql = "DELETE FROM Goods_Delivery_Detail WHERE NoteID = '" + NoteID + "'";
+            int isDeleteReceivedDetail = DeleteData(sql);
+            if (isDeleteReceivedDetail != 0)
+            {
+                int isDeleteReceivedNote = DeleteData("DELETE FROM Goods_Delivery_Note WHERE NoteID = '" + NoteID + "'");
+                if (isDeleteReceivedNote != 0)
+                {
+                    MessageBox.Show("Delete delivery note success", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {

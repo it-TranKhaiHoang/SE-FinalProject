@@ -22,6 +22,7 @@ namespace SE_FinalProject.Forms
         UC_Main UC_Main;
         UC_CreateReceived UC_CreateReceived;
         UC_CreateDelivery UC_CreateDelivery;
+        UC_ListDelivery UC_ListDelivery;
         private void main_Load(object sender, EventArgs e)
         {
             //loginForm loginForm = new loginForm();
@@ -85,6 +86,20 @@ namespace SE_FinalProject.Forms
             {
                 UC_CreateDelivery.BringToFront();
             }
+        }
+
+        private void ac_ListDeliveryNote_Click(object sender, EventArgs e)
+        {
+            /*if (UC_ListDelivery == null)
+            {
+                UC_ListDelivery = new UC_ListDelivery();
+                UC_ListDelivery.Dock = DockStyle.Fill;
+                mainContainer.Controls.Add(UC_ListDelivery);
+                UC_ListDelivery.BringToFront();
+            } else
+            {
+                UC_ListDelivery.BringToFront();
+            }*/
         }
     }
 }

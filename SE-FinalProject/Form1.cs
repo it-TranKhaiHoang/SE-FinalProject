@@ -20,7 +20,7 @@ namespace SE_FinalProject
             
             SqlConnection conn = new SqlConnection(Program.connectionString);
             conn.Open();
-            String sSQL = "SELECT username, password, fullname FROM Accountant WHERE " +
+            String sSQL = "SELECT username, password, fullname, UserID FROM Accountant WHERE " +
             "username='" + tbUsername.Text + "' and password='" +
             tbPassword.Text + "'";
             SqlCommand cmd = new SqlCommand(sSQL, conn);
@@ -33,6 +33,7 @@ namespace SE_FinalProject
                 
                 while (dataReader.Read())
                 {
+                    Program.userID = dataReader.GetString(3);
                     Program.username = dataReader.GetString(2);
                 }
                 
