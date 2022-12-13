@@ -22,6 +22,7 @@ namespace SE_FinalProject.Forms
         UC_Main UC_Main;
         UC_CreateReceived UC_CreateReceived;
         UC_CreateDelivery UC_CreateDelivery;
+        UC_Statistical UC_Statistical;
         private void main_Load(object sender, EventArgs e)
         {
             loginForm loginForm = new loginForm();
@@ -86,6 +87,17 @@ namespace SE_FinalProject.Forms
                 UC_CreateDelivery.BringToFront();
         }
 
-        
+        private void accordionControlElement2_Click(object sender, EventArgs e)
+        {
+            if (UC_Statistical == null)
+            {
+                UC_Statistical = new UC_Statistical();
+                UC_Statistical.Dock = DockStyle.Fill;
+                mainContainer.Controls.Add(UC_Statistical);
+                UC_Statistical.BringToFront();
+            }
+            else
+                UC_Statistical.BringToFront();
+        }
     }
 }

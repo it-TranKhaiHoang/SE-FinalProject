@@ -232,7 +232,6 @@ namespace SE_FinalProject.UI
         private void btn_DNPrint_Click(object sender, EventArgs e)
         {
             DeliveryNote obj = deliveryNoteBindingSource.Current as DeliveryNote;
-            MessageBox.Show(obj.NoteID);
             if (obj != null)
             {
                 using (IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConn"].ConnectionString))

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace SE_FinalProject
 {
-    public class Controllers
+    public class Controllers 
     {
         static SqlConnection conn = new SqlConnection();
 
@@ -28,6 +28,18 @@ namespace SE_FinalProject
 
         // Get data to DataTable
         public static DataTable GetData (String query)
+        {
+            ConnectToDB();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            CloseConnect();
+            return dt;
+        }
+
+
+        public DataTable _GetData(String query)
         {
             ConnectToDB();
             SqlCommand cmd = new SqlCommand(query, conn);
@@ -212,6 +224,58 @@ namespace SE_FinalProject
                 MessageBox.Show("Error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        public static DataTable getImportReport(String from, String to)
+        {
+            String query = "select g.Goods_Name,g.GoodsID, SUM(q.Quantity) as 'Total' " +
+                " from Goods_Received_Note d " +
+                " inner join Goods_Received_Detail q on q.NoteID = d.NoteID " +
+                " inner join Goods g on q.GoodsID = g.GoodsID " +
+                $" where Received_Date between '{from}' and '{to}' " +
+                " group by g.Goods_Name,g.GoodsID ";
+            DataTable dt = GetData(query);
+
+            return dt;
+        }
+
+        public static DataTable getExportReport(String from, String to)
+        {
+            String query = "select g.Goods_Name,g.GoodsID, SUM(q.Quantity) as 'Total' " +
+                "from Goods_Delivery_Note d " +
+                " inner join Goods_Delivery_Detail q on q.NoteID = d.NoteID " +
+                " inner join Goods g on q.GoodsID = g.GoodsID " +
+                $" where Delivery_Date between '{from}' and '{to}' " +
+                " group by g.Goods_Name,g.GoodsID ";
+            DataTable dt = GetData(query);
+
+            return dt;
+        }
+
+        public static DataTable getSellingReport(String from, String to)
+        {
+            String query = " select total.Goods_Name, max(total.Total) as 'Quantity' " +
+                " from (select g.Goods_Name,g.GoodsID, SUM(q.Quantity) as 'Total' " +
+                " from Goods_Received_Note d " +
+                " inner join Goods_Received_Detail q on q.NoteID = d.NoteID" +
+                " inner join Goods g on q.GoodsID = g.GoodsID " +
+                $" where Received_Date between '{from}' and '{to}' " +
+                " group by g.Goods_Name,g.GoodsID) as total" +
+                " group by total.Goods_Name" +
+                " order by Quantity DESC ";
+            DataTable dt = GetData(query);
+
+            return dt;
+        }
+
+        public static DataTable getEvenueReport(String from, String to)
+        {
+            String query = " select sum(d.Total_amount) as 'Turnover' " +
+                " from Goods_Delivery_Note d " +
+                $" where Delivery_Date between '{from}' and '{to}' ";
+            DataTable dt = GetData(query);
+
+            return dt;
+        }
+
     }
 
 }

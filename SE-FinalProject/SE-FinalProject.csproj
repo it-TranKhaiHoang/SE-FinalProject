@@ -133,6 +133,12 @@
     <Compile Include="UI\UC_Main.Designer.cs">
       <DependentUpon>UC_Main.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\UC_Statistical.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\UC_Statistical.Designer.cs">
+      <DependentUpon>UC_Statistical.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\UserControl1.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -173,6 +179,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\UC_Main.resx">
       <DependentUpon>UC_Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UC_Statistical.resx">
+      <DependentUpon>UC_Statistical.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\UserControl1.resx">
       <DependentUpon>UserControl1.cs</DependentUpon>

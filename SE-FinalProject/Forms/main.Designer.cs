@@ -43,6 +43,7 @@
             this.fluentDesignFormControl1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl();
             this.skinBarSubItem1 = new DevExpress.XtraBars.SkinBarSubItem();
             this.fluentFormDefaultManager1 = new DevExpress.XtraBars.FluentDesignSystem.FluentFormDefaultManager(this.components);
+            this.accordionControlElement2 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fluentDesignFormControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fluentFormDefaultManager1)).BeginInit();
@@ -51,10 +52,10 @@
             // mainContainer
             // 
             this.mainContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainContainer.Location = new System.Drawing.Point(173, 31);
+            this.mainContainer.Location = new System.Drawing.Point(314, 31);
             this.mainContainer.Margin = new System.Windows.Forms.Padding(2);
             this.mainContainer.Name = "mainContainer";
-            this.mainContainer.Size = new System.Drawing.Size(819, 511);
+            this.mainContainer.Size = new System.Drawing.Size(678, 511);
             this.mainContainer.TabIndex = 0;
             // 
             // accordionControl1
@@ -65,29 +66,29 @@
             this.accordionControlElement1,
             this.ac_Delivery,
             this.accordionControlSeparator1,
+            this.accordionControlElement2,
             this.ac_Logout,
             this.accordionControlSeparator2});
             this.accordionControl1.Location = new System.Drawing.Point(0, 31);
             this.accordionControl1.Margin = new System.Windows.Forms.Padding(2);
             this.accordionControl1.Name = "accordionControl1";
             this.accordionControl1.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Touch;
-            this.accordionControl1.Size = new System.Drawing.Size(173, 511);
+            this.accordionControl1.Size = new System.Drawing.Size(314, 511);
             this.accordionControl1.TabIndex = 1;
             this.accordionControl1.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
             // 
             // ac_GoodsList
             // 
-            this.ac_GoodsList.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("ac_GoodsList.ImageOptions.SvgImage")));
+            this.ac_GoodsList.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ac_GoodsList.ImageOptions.Image")));
             this.ac_GoodsList.Name = "ac_GoodsList";
             this.ac_GoodsList.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.ac_GoodsList.Text = "Goods";
+            this.ac_GoodsList.Text = "Warehouse";
             this.ac_GoodsList.Click += new System.EventHandler(this.ac_GoodsList_Click);
             // 
             // accordionControlElement1
             // 
             this.accordionControlElement1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
             this.ac_CreateReceivedNote});
-            this.accordionControlElement1.Expanded = true;
             this.accordionControlElement1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement1.ImageOptions.Image")));
             this.accordionControlElement1.Name = "accordionControlElement1";
             this.accordionControlElement1.Text = "Received";
@@ -97,14 +98,13 @@
             this.ac_CreateReceivedNote.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ac_CreateReceivedNote.ImageOptions.Image")));
             this.ac_CreateReceivedNote.Name = "ac_CreateReceivedNote";
             this.ac_CreateReceivedNote.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.ac_CreateReceivedNote.Text = "Create received note";
+            this.ac_CreateReceivedNote.Text = "Received note";
             this.ac_CreateReceivedNote.Click += new System.EventHandler(this.ac_CreateReceivedNote_Click);
             // 
             // ac_Delivery
             // 
             this.ac_Delivery.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
             this.ac_CreateDeliveryNote});
-            this.ac_Delivery.Expanded = true;
             this.ac_Delivery.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ac_Delivery.ImageOptions.Image")));
             this.ac_Delivery.Name = "ac_Delivery";
             this.ac_Delivery.Text = "Delivery";
@@ -114,7 +114,7 @@
             this.ac_CreateDeliveryNote.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ac_CreateDeliveryNote.ImageOptions.Image")));
             this.ac_CreateDeliveryNote.Name = "ac_CreateDeliveryNote";
             this.ac_CreateDeliveryNote.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.ac_CreateDeliveryNote.Text = "Create Delivery Note";
+            this.ac_CreateDeliveryNote.Text = "Delivery Note";
             this.ac_CreateDeliveryNote.Click += new System.EventHandler(this.ac_CreateDeliveryNote_Click);
             // 
             // accordionControlSeparator1
@@ -160,6 +160,14 @@
             this.skinBarSubItem1});
             this.fluentFormDefaultManager1.MaxItemId = 1;
             // 
+            // accordionControlElement2
+            // 
+            this.accordionControlElement2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement2.ImageOptions.Image")));
+            this.accordionControlElement2.Name = "accordionControlElement2";
+            this.accordionControlElement2.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionControlElement2.Text = "Statistical";
+            this.accordionControlElement2.Click += new System.EventHandler(this.accordionControlElement2_Click);
+            // 
             // main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -197,5 +205,6 @@
         private DevExpress.XtraBars.SkinBarSubItem skinBarSubItem1;
         private DevExpress.XtraBars.Navigation.AccordionControlElement ac_GoodsList;
         private DevExpress.XtraBars.Navigation.AccordionControlSeparator accordionControlSeparator2;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement2;
     }
 }
