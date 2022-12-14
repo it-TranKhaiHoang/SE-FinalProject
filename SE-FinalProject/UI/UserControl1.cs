@@ -85,7 +85,12 @@ namespace SE_FinalProject.UI
                 }
                 storage[e.ListSourceRowIndex] = (Image)e.Value;
             }
+            
         }
 
+        private void btnG_Reload_Click(object sender, EventArgs e)
+        {
+            gcGoods.DataSource = Controllers.GetGoodsList();
+        }
     }
 }

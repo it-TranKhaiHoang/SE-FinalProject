@@ -71,6 +71,7 @@ namespace SE_FinalProject.Forms
             else
             {
                 uc1.BringToFront();
+                
             }
         }
 

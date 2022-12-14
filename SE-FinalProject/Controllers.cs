@@ -254,10 +254,10 @@ namespace SE_FinalProject
         {
             String query = " select total.Goods_Name, max(total.Total) as 'Quantity' " +
                 " from (select g.Goods_Name,g.GoodsID, SUM(q.Quantity) as 'Total' " +
-                " from Goods_Received_Note d " +
-                " inner join Goods_Received_Detail q on q.NoteID = d.NoteID" +
+                " from Goods_Delivery_Note d " +
+                " inner join Goods_Delivery_Detail q on q.NoteID = d.NoteID" +
                 " inner join Goods g on q.GoodsID = g.GoodsID " +
-                $" where Received_Date between '{from}' and '{to}' " +
+                $" where Delivery_Date between '{from}' and '{to}' " +
                 " group by g.Goods_Name,g.GoodsID) as total" +
                 " group by total.Goods_Name" +
                 " order by Quantity DESC ";

@@ -146,6 +146,8 @@ namespace SE_FinalProject.UI
                     Controllers.CreateDeliveryDetail(NoteID, GoodsID, Unit, Price, Quantity, Into_Money);
                 }
                 GC_ListDeliveryNote.DataSource = Controllers.GetDeliveryNote();
+                
+                //gcGoods.DataSource = Controllers.GetGoodsList();
             }
             
         }
